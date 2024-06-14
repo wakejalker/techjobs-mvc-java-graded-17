@@ -20,9 +20,7 @@
   <tr>
     <!-- TODO #2: Complete the View Jobs By Category Table. -->
     <td>
-      <li>
-        <a th:href="@{/list/jobs(column=all, volume=all)}" th:text="View All"></a>
-      </li>
+        <a th:href="@{/list/jobs(column=all, volume=all)}" th:text="'View All'"></a>
     </td>
 
     <td th:each="category : ${tableChoices}">

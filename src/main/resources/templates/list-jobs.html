@@ -8,8 +8,6 @@
 <div class="container body-content">
   <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-  <hr />
-
   <!-- Loop over the search results to display all job fields -->
   <th:block th:each="job : ${jobs}">
     <table class="job-listing">
