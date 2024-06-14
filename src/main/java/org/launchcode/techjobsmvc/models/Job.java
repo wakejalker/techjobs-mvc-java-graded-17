@@ -61,6 +61,7 @@ public class Job {
                 "Position Type: %s\n" +
                 "Core Competency: %s\n" +
                 "Department: %s\n", id, name, employer, location, positionType, coreCompetency, department);
+        return output;
     }
 
     // Custom equals and hashCode methods. Two Job objects are "equal" when their id fields match.

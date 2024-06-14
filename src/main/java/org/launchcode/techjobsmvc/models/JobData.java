@@ -35,13 +35,11 @@ public class JobData {
      * Fetch list of all job objects from loaded data,
      * without duplicates, then return a copy.
      */
-
     public static ArrayList<Job> findAll() {
 
-        // load data, if not already loaded
+        // Load data, if not already loaded
         loadData();
 
-        // Bonus mission; normal version returns allJobs
         return new ArrayList<>(allJobs);
     }
 
@@ -57,12 +55,10 @@ public class JobData {
      */
     public static ArrayList<Job> findByColumnAndValue(String column, String value) {
 
-        // load data, if not already loaded
+        // Load data, if not already loaded
         loadData();
 
         ArrayList<Job> jobs = new ArrayList<>();
-
-
 
         if (value.toLowerCase().equals("all")){
             return findAll();
@@ -92,18 +88,19 @@ public class JobData {
             theValue = job.getEmployer().toString();
         } else if (fieldName.equals("location")){
             theValue = job.getLocation().toString();
-        } else if (fieldName.equals("positionType")) {
+        } else if (fieldName.equals("positionType")){
             theValue = job.getPositionType().toString();
         } else if (fieldName.equals("coreCompetency")){
-                theValue = job.getCoreCompetency().toString();
-            } else if (fieldName.equals("department")){
-                theValue = job.getDepartment(); // Add department case
-            } else {
-                theValue = "";
-            }
+            theValue = job.getCoreCompetency().toString();
+        } else if (fieldName.equals("department")){
+            theValue = job.getDepartment(); // Add department case
+        } else {
+            theValue = "";
+        }
 
         return theValue;
     }
+
     /**
      * Search all Job fields for the given term.
      *
@@ -112,7 +109,7 @@ public class JobData {
      */
     public static ArrayList<Job> findByValue(String value) {
 
-        // load data, if not already loaded
+        // Load data, if not already loaded
         loadData();
 
         ArrayList<Job> jobs = new ArrayList<>();
@@ -131,7 +128,7 @@ public class JobData {
                 jobs.add(job);
             } else if (job.getDepartment().toLowerCase().contains(value.toLowerCase())) { // Add department case
                 jobs.add(job);
-
+            }
         }
 
         return jobs;
@@ -204,7 +201,7 @@ public class JobData {
                     allPositionTypes.add(newPosition);
                 }
 
-                Job newJob = new Job(aName, newEmployer, newLocation, newPosition, newSkill, aDepartment);
+                Job newJob = new Job(aName, newEmployer, newLocation, newPosition, newSkill, aDepartment); // Include department
 
                 allJobs.add(newJob);
                 allDepartments.add(aDepartment); // Add department to the set
@@ -242,12 +239,10 @@ public class JobData {
         return allCoreCompetency;
     }
 
-        public static ArrayList<String> getAllDepartments() {
-            loadData();
-            ArrayList<String> sortedDepartments = new ArrayList<>(allDepartments);
-            sortedDepartments.sort(String::compareToIgnoreCase);
-            return sortedDepartments;
-        }
+    public static ArrayList<String> getAllDepartments() {
+        loadData();
+        ArrayList<String> sortedDepartments = new ArrayList<>(allDepartments);
+        sortedDepartments.sort(String::compareToIgnoreCase);
+        return sortedDepartments;
+    }
 }
-
-
