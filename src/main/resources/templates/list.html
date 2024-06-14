@@ -21,7 +21,7 @@
     <!-- TODO #2: Complete the View Jobs By Category Table. -->
     <td>
       <li>
-        <a th:href="@{/list/jobs(column=all)}">View All</a>
+        <a th:href="@{/list/jobs(column=all, volume=all)}" th:text="View All"></a>
       </li>
     </td>
 
@@ -34,6 +34,8 @@
     </td>
   </tr>
 </table>
+
+
 
 </body>
 </html>

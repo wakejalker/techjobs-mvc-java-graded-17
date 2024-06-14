@@ -8,48 +8,48 @@
 <div class="container body-content">
   <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-  <form th:action="@{/search/results}" method="post">
-    <h2>Search by:</h2>
-    <p>
-      <span th:each="column : ${columns}">
-        <input type="radio" name="searchType" th:id="${column.key}" th:value="${column.key}" th:checked="${column.key == 'all'}" />
-        <label th:for="${column.key}" th:text="${column.value}"></label>
-      </span>
-    </p>
-    <p>
-      <label for="searchTerm">Keyword:</label>
-      <input type="text" name="searchTerm" id="searchTerm" />
-    </p>
-    <input type="submit" value="Search" />
-  </form>
+<!--  <form th:action="@{/search/results}" method="post">-->
+<!--    <h2>Search by:</h2>-->
+<!--    <p>-->
+<!--      <span th:each="column : ${columns}">-->
+<!--        <input type="radio" name="searchType" th:id="${column.key}" th:value="${column.key}" th:checked="${column.key == 'all'}" />-->
+<!--        <label th:for="${column.key}" th:text="${column.value}"></label>-->
+<!--      </span>-->
+<!--    </p>-->
+<!--    <p>-->
+<!--      <label for="searchTerm">Keyword:</label>-->
+<!--      <input type="text" name="searchTerm" id="searchTerm" />-->
+<!--    </p>-->
+<!--    <input type="submit" value="Search" />-->
+<!--  </form>-->
 
   <hr />
 
   <!-- Loop over the search results to display all job fields -->
   <th:block th:each="job : ${jobs}">
-    <table class="job-listing">
+    <table class="table job-listing">
       <tr>
-        <td>ID</td>
+        <th>ID</th>
         <td th:text="${job.id}"></td>
       </tr>
       <tr>
-        <td>Name</td>
+        <th>Name</th>
         <td th:text="${job.name}"></td>
       </tr>
       <tr>
-        <td>Employer</td>
+        <th>Employer</th>
         <td th:text="${job.employer}"></td>
       </tr>
       <tr>
-        <td>Location</td>
+        <th>Location</th>
         <td th:text="${job.location}"></td>
       </tr>
       <tr>
-        <td>Position Type</td>
+        <th>Position Type</th>
         <td th:text="${job.positionType}"></td>
       </tr>
       <tr>
-        <td>Skill</td>
+        <th>Core Competency</th>
         <td th:text="${job.coreCompetency}"></td>
       </tr>
     </table>

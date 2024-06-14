@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.launchcode.techjobsmvc.controllers.ListController.columnChoices;
 
@@ -20,6 +21,7 @@ import static org.launchcode.techjobsmvc.controllers.ListController.columnChoice
 @Controller
 @RequestMapping("search")
 public class SearchController {
+
 
     @GetMapping(value = "")
     public String search(Model model) {
@@ -35,6 +37,16 @@ public class SearchController {
                                        @RequestParam String searchTerm) {
         ArrayList<Job> jobs;
 
+        if (searchType.equals("all")) {
+            if (searchTerm == null || searchTerm.equals("")) {
+                jobs = JobData.findAll();
+            } else {
+                jobs = JobData.findByValue(searchTerm);
+            }
+        } else {
+            jobs = JobData.findByColumnAndValue(searchType, searchTerm);
+        }
+
 //        if (searchTerm.toLowerCase().equals("all") || searchTerm.isEmpty()) {
 //            jobs = JobData.findAll();
 //            model.addAttribute("title", "All Jobs");
@@ -44,12 +56,12 @@ public class SearchController {
 //            model.addAttribute("title", "Jobs with " + columnLabel + ": " + searchTerm);
 //        }
 
-        // Check if the search term is "all" or empty
-        if (searchTerm.toLowerCase().equals("all") || searchTerm.trim().isEmpty()) {
-            jobs = JobData.findAll();
-        } else {
-            jobs = JobData.findByColumnAndValue(searchType, searchTerm);
-        }
+//        // Check if the search term is "all" or empty
+//        if (searchTerm.toLowerCase().equals("all") || searchTerm.trim().isEmpty()) {
+//            jobs = JobData.findAll();
+//        } else {
+//            jobs = JobData.findByColumnAndValue(searchType, searchTerm);
+//        }
 
         // Pass the search results and column choices to the view
         model.addAttribute("jobs", jobs);
